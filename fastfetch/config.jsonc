@@ -1,0 +1,160 @@
+// Fastfetch Configuration File
+// Custom boxed layout with Katana art & Desktop PC modules
+// Located at ~/.config/fastfetch/config.jsonc and ~/.config/Fastfetch/config.jsonc
+
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    
+    // Logo configuration
+    // High-resolution Katana artwork (1280x2032)
+    "logo": {
+        "source": "/home/kuroko24/.config/fastfetch/katana.png",
+        "type": "auto",
+        "width": 38,
+        "height": 30,
+        "padding": {
+            "top": 1,
+            "left": 0,
+            "right": 4
+        }
+    },
+
+    "display": {
+        "separator": ""
+    },
+
+    "modules": [
+        // ==========================================
+        // HARDWARE SECTION (Desktop PC)
+        // ==========================================
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  ┌───────────────────────────────Hardware────────────────────────────────┐"
+        },
+        {
+            "type": "host",
+            "key": "   PC      : ",
+            "format": "{name}"
+        },
+        {
+            "type": "cpu",
+            "key": "    ├ CPU  : ",
+            "format": "{name} ({cores-logical}) @ {freq-max}"
+        },
+        {
+            "type": "gpu",
+            "key": "    ├ GPU  : ",
+            "format": "{name} [{type}]"
+        },
+        {
+            "type": "memory",
+            "key": "    ├ RAM  : ",
+            "format": "{used} / {total} ({percentage})"
+        },
+        {
+            "type": "bluetooth",
+            "key": "    ├ BT   : ",
+            "format": "{name}{?battery-percentage} ({battery-percentage}){?}"
+        },
+        {
+            "type": "disk",
+            "key": "    └ Disk : ",
+            "showExternal": false,
+            "showHidden": false,
+            "format": "{size-used} / {size-total} ({size-percentage}) - {filesystem}"
+        },
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  └───────────────────────────────────────────────────────────────────────┘"
+        },
+
+        "break",
+
+        // ==========================================
+        // SOFTWARE SECTION
+        // ==========================================
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  ┌───────────────────────────────Software────────────────────────────────┐"
+        },
+        {
+            "type": "os",
+            "key": "   OS        : ",
+            "format": "{name} {arch}"
+        },
+        {
+            "type": "kernel",
+            "key": "    ├ Kernel : ",
+            "format": "{sysname} {release}"
+        },
+        {
+            "type": "bios",
+            "key": "    ├ BIOS   : ",
+            "format": "{vendor} Ver. {version}"
+        },
+        {
+            "type": "packages",
+            "key": "    ├ Pkgs   : "
+        },
+        {
+            "type": "shell",
+            "key": "    ├ Shell  : ",
+            "format": "{process-name}"
+        },
+        {
+            "type": "de",
+            "key": "    ├ DE     : ",
+            "format": "{pretty-name} {version}"
+        },
+        {
+            "type": "wm",
+            "key": "    ├ WM     : ",
+            "format": "{pretty-name} ({protocol-name})"
+        },
+        {
+            "type": "terminal",
+            "key": "    └ Term   : ",
+            "format": "{process-name} {version}"
+        },
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  └───────────────────────────────────────────────────────────────────────┘"
+        },
+
+        "break",
+
+        // ==========================================
+        // UPTIME / SYSTEM AGE / DATETIME SECTION
+        // ==========================================
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  ┌────────────────────────────Uptime / Age / DT──────────────────────────┐"
+        },
+        {
+            "type": "command",
+            "key": "   OS Age      : ",
+            "text": "birth_install=$(stat -c %W /etc 2>/dev/null || stat -c %Z /etc 2>/dev/null || date -d \"$(head -n 1 /var/log/pacman.log 2>/dev/null | cut -d ']' -f 1 | tr -d '[')\" +%s 2>/dev/null); current=$(date +%s); echo \"$(( (current - birth_install) / 86400 )) days\""
+        },
+        {
+            "type": "uptime",
+            "key": "    ├ Uptime   : ",
+            "format": "{hours} hours, {minutes} mins"
+        },
+        {
+            "type": "datetime",
+            "key": "    └ DateTime : ",
+            "format": "{year}-{month-pretty}-{day-pretty} {hour-pretty}:{minute-pretty}:{second-pretty}"
+        },
+        {
+            "type": "custom",
+            "format": "{#31}─{#}  └───────────────────────────────────────────────────────────────────────┘"
+        },
+
+        // Color palette circles at the bottom
+        {
+            "type": "colors",
+            "paddingLeft": 3,
+            "symbol": "circle"
+        }
+    ]
+}
